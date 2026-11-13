@@ -8,9 +8,9 @@
 
 | Seu computador | Arquivo |
 | --- | --- |
-| Mac com Apple Silicon (M1, M2, M3, M4…) | `Pixel-5.1.2-mac-arm64.dmg` |
-| Mac com Intel | `Pixel-5.1.2-mac-x64.dmg` |
-| Windows de 64 bits | `Pixel-5.1.2-win-x64.exe` |
+| Mac com Apple Silicon (M1, M2, M3, M4…) | `Pixel-5.1.3-mac-arm64.dmg` |
+| Mac com Intel | `Pixel-5.1.3-mac-x64.dmg` |
+| Windows de 64 bits | `Pixel-5.1.3-win-x64.exe` |
 
 No Mac, abra o DMG e arraste **Pixel** para Aplicativos. No Windows, execute o instalador e use o atalho **Pixel**. Não é preciso instalar Node.js ou criar conta no ElevenLabs.
 
@@ -41,7 +41,7 @@ A versão compartilhada inclui os ajustes escolhidos pelo criador: nome **Pixeli
 
 25 falas expressivas em português (incluindo 16 novas) foram produzidas no ElevenLabs e acompanham o aplicativo. Os nomes dos arquivos e as falas públicas não usam o nome pessoal do criador. Não há chaves ou identificadores da conta dentro do projeto.
 
-O áudio é reproduzido localmente no Mac e no Windows. Em Voz e sons, você pode escolher e ouvir todas as gravações. Novas reações aguardam a frase atual terminar; silenciar interrompe imediatamente. Frases personalizadas sem gravação podem usar a voz em português instalada no sistema; a qualidade depende das vozes disponíveis no computador. Voz, efeitos sonoros e balões têm controles separados. Nenhuma chamada paga de geração é feita pelo aplicativo.
+O áudio é reproduzido localmente no Mac e no Windows. Em Voz e sons, você pode escolher e ouvir todas as gravações. Novas reações aguardam a frase atual terminar; silenciar interrompe imediatamente. Frases de cenas sem gravação aparecem nos balões. A conversa opcional usa a voz local baseada no Pixel; não troca automaticamente para uma voz diferente do sistema. Voz, efeitos sonoros e balões têm controles separados. Nenhuma chamada paga de geração é feita pelo aplicativo.
 
 ## Conversa local opcional
 
