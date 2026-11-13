@@ -27,6 +27,20 @@ jobs:
       - run: npm run build:${{ matrix.target }}
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - name: Verify Mac signatures and launch
+        if: matrix.target == 'mac'
+        run: |
+          codesign --verify --deep --strict dist/mac-arm64/Pixel.app
+          codesign --verify --deep --strict dist/mac/Pixel.app
+          if [ "$(uname -m)" = "arm64" ]; then dist/mac-arm64/Pixel.app/Contents/MacOS/Pixel --smoke-test; else dist/mac/Pixel.app/Contents/MacOS/Pixel --smoke-test; fi
+      - name: Launch Windows smoke test
+        if: matrix.target == 'win'
+        shell: pwsh
+        run: |
+          $app = Start-Process -FilePath "dist/win-unpacked/Pixel.exe" -ArgumentList "--smoke-test" -Wait -PassThru -RedirectStandardOutput "smoke.txt" -RedirectStandardError "smoke-error.txt"
+          Get-Content smoke.txt
+          Get-Content smoke-error.txt
+          if ($app.ExitCode -ne 0) { exit $app.ExitCode }
       - uses: actions/upload-artifact@v4
         with:
           name: Pixel-${{ matrix.target }}

@@ -8,9 +8,9 @@
 
 | Seu computador | Arquivo |
 | --- | --- |
-| Mac com Apple Silicon (M1, M2, M3, M4…) | `Pixel-5.1.0-mac-arm64.dmg` |
-| Mac com Intel | `Pixel-5.1.0-mac-x64.dmg` |
-| Windows de 64 bits | `Pixel-5.1.0-win-x64.exe` |
+| Mac com Apple Silicon (M1, M2, M3, M4…) | `Pixel-5.1.1-mac-arm64.dmg` |
+| Mac com Intel | `Pixel-5.1.1-mac-x64.dmg` |
+| Windows de 64 bits | `Pixel-5.1.1-win-x64.exe` |
 
 No Mac, abra o DMG e arraste **Pixel** para Aplicativos. No Windows, execute o instalador e use o atalho **Pixel**. Não é preciso instalar Node.js ou criar conta no ElevenLabs.
 

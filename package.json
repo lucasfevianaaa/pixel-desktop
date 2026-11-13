@@ -1,7 +1,7 @@
 {
   "name": "pixel-desktop",
   "productName": "Pixel",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Seu pequeno colega de trabalho em pixel art para macOS e Windows.",
   "main": "src/main.js",
   "author": "lucasfevianaaa",
@@ -74,10 +74,12 @@
       ],
       "category": "public.app-category.entertainment",
       "icon": "assets/icon.icns",
-      "identity": null,
+      "identity": "-",
       "extendInfo": {
         "NSMicrophoneUsageDescription": "O Pixel usa o microfone somente quando você inicia uma conversa por voz. O reconhecimento acontece neste computador."
-      }
+      },
+      "hardenedRuntime": false,
+      "strictVerify": true
     },
     "win": {
       "target": [
