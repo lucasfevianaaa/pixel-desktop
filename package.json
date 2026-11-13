@@ -1,0 +1,98 @@
+{
+  "name": "pixel-desktop",
+  "productName": "Pixel",
+  "version": "5.1.0",
+  "description": "Seu pequeno colega de trabalho em pixel art para macOS e Windows.",
+  "main": "src/main.js",
+  "author": "lucasfevianaaa",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucasfevianaaa/pixel-desktop.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test src/tests/*.test.js",
+    "build:mac": "electron-builder --mac --publish never",
+    "build:win": "electron-builder --win --x64 --publish never",
+    "pack": "electron-builder --dir --publish never"
+  },
+  "devDependencies": {
+    "electron": "45.3.1",
+    "electron-builder": "26.18.1"
+  },
+  "build": {
+    "appId": "io.github.lucasfevianaaa.pixel",
+    "productName": "Pixel",
+    "asar": true,
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "src/**/*",
+      "!src/tests/**/*",
+      "!**/__pycache__/**",
+      "!**/*.pyc",
+      "assets/tray.png",
+      "package.json",
+      "LICENSE",
+      "MEDIA-LICENSE.txt"
+    ],
+    "extraResources": [
+      {
+        "from": "src/hooks/notify.py",
+        "to": "hooks/notify.py"
+      },
+      {
+        "from": "local-assistant",
+        "to": "local-assistant",
+        "filter": [
+          "server.py",
+          "reference.wav"
+        ]
+      }
+    ],
+    "artifactName": "Pixel-${version}-${os}-${arch}.${ext}",
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "category": "public.app-category.entertainment",
+      "icon": "assets/icon.icns",
+      "identity": null,
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "O Pixel usa o microfone somente quando você inicia uma conversa por voz. O reconhecimento acontece neste computador."
+      }
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.ico",
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Pixel"
+    },
+    "publish": null
+  }
+}

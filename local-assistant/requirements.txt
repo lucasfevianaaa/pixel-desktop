@@ -1,0 +1,4 @@
+mlx-audio==0.6.5
+mlx-lm==0.32.2
+faster-whisper==1.2.1
+soundfile==0.14.0

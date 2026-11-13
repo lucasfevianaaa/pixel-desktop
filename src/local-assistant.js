@@ -1,0 +1,14 @@
+const fs=require('fs'),path=require('path'),http=require('http'),crypto=require('crypto'),{spawn}=require('child_process');
+class LocalAssistant{
+ constructor(root,resourceDir){this.root=root;this.resourceDir=resourceDir;this.child=null;this.starting=null;this.port=0;this.token='';this.busy=false;}
+ config(){try{return JSON.parse(fs.readFileSync(path.join(this.root,'assistant-local.json'),'utf8'));}catch{return {};}}
+ status(){const c=this.config();return {installed:!!(c.python&&fs.existsSync(c.python)),running:!!this.port,busy:this.busy};}
+ async start(){if(this.port)return;if(this.starting)return this.starting;const c=this.config();if(!c.python||!fs.existsSync(c.python))throw Error('A conversa local ainda não foi instalada. Veja docs/LOCAL-ASSISTANT.md no projeto.');
+  this.token=crypto.randomBytes(32).toString('hex');
+  this.starting=new Promise((resolve,reject)=>{const child=spawn(c.python,[path.join(this.resourceDir,'server.py')],{env:{...process.env,PIXEL_LOCAL_TOKEN:this.token,HF_HUB_CACHE:c.cache||'',HF_HUB_OFFLINE:'1',TOKENIZERS_PARALLELISM:'false'},stdio:['ignore','pipe','ignore'],windowsHide:true});this.child=child;let output='',settled=false;const timer=setTimeout(()=>fail(Error('O motor local demorou para iniciar.')),15000);const fail=e=>{clearTimeout(timer);if(!settled){settled=true;reject(e);}if(this.child===child){this.port=0;this.child=null;}child.kill();};child.on('error',fail);child.on('exit',()=>fail(Error('O motor local foi encerrado.')));child.stdout.on('data',chunk=>{output+=chunk;const newline=output.indexOf('\n');if(newline<0)return;try{const {port}=JSON.parse(output.slice(0,newline));if(!Number.isInteger(port)||port<1||port>65535)throw Error('Porta inválida.');this.port=port;settled=true;clearTimeout(timer);resolve();}catch(e){fail(e);}});});
+  try{await this.starting;}finally{this.starting=null;}
+ }
+ async request(route,data={}){if(this.busy)throw Error('Aguarde o Pixel terminar a resposta atual.');this.busy=true;try{await this.start();return await new Promise((resolve,reject)=>{const body=JSON.stringify(data);const req=http.request({hostname:'127.0.0.1',port:this.port,path:route,method:'POST',headers:{Authorization:'Bearer '+this.token,'Content-Type':'application/json','Content-Length':Buffer.byteLength(body)}},res=>{let raw='';res.on('data',chunk=>{raw+=chunk;if(raw.length>20_000_000)req.destroy(Error('Resposta local grande demais.'));});res.on('end',()=>{try{const value=JSON.parse(raw);if(res.statusCode!==200)reject(Error(value.error||'Falha no motor local.'));else resolve(value);}catch(e){reject(e);}});});req.setTimeout(180000,()=>{req.destroy(Error('O motor local demorou demais. Tente uma frase mais curta.'));this.stop();});req.on('error',reject);req.end(body);});}finally{this.busy=false;}}
+ stop(){if(this.child)this.child.kill();this.child=null;this.port=0;this.token='';}
+}
+module.exports=LocalAssistant;

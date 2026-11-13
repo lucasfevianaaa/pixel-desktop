@@ -1,0 +1,10 @@
+Áudios do Pixel
+
+Os arquivos MP3 acompanham este aplicativo para uso e redistribuição com o
+Pixel. Foram produzidos com uma voz sintética original no ElevenLabs.
+A licença do código não concede acesso a uma conta, serviço, modelo ou
+identidade vocal do ElevenLabs. Os serviços de terceiros mantêm seus próprios
+termos. Os arquivos publicados não contêm credenciais nem identificadores da
+conta usada para gerar a voz.
+
+Speech synthesis: ElevenLabs — https://elevenlabs.io/

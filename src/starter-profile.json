@@ -1,0 +1,103 @@
+{
+  "name": "Resenha — Pixelito",
+  "settings": {
+    "appearance": {
+      "scale": 1,
+      "palette": "blue",
+      "customColor": "#5269c5",
+      "theme": "office",
+      "accessories": [
+        "glasses",
+        "cap",
+        "tie",
+        "helmet",
+        "headphones",
+        "mug"
+      ],
+      "daily": true,
+      "favorites": [
+        "glasses",
+        "tie"
+      ],
+      "shadow": true,
+      "particles": true
+    },
+    "personality": {
+      "drama": 2,
+      "affection": 1,
+      "sarcasm": 1,
+      "curiosity": 2,
+      "energy": 2
+    },
+    "identity": {
+      "name": "Pixelito",
+      "addressMode": "chief",
+      "address": "",
+      "slang": "informal",
+      "favorites": [],
+      "blocked": []
+    },
+    "audio": {
+      "voice": true,
+      "effects": true,
+      "voiceVolume": 0.7,
+      "effectsVolume": 0.6,
+      "spontaneous": "normal",
+      "greetings": true,
+      "completion": true
+    },
+    "balloons": {
+      "enabled": true,
+      "fontSize": 13,
+      "duration": 1,
+      "contrast": false,
+      "spontaneous": true
+    },
+    "behavior": {
+      "wander": true,
+      "gaze": true,
+      "ride": true,
+      "clicks": true,
+      "whip": true,
+      "playful": true,
+      "accessories": true,
+      "greetings": true,
+      "celebrate": true,
+      "frequency": "high",
+      "speed": "lively",
+      "rare": "frequent",
+      "reduced": false,
+      "focus": false,
+      "favorites": [],
+      "disabled": []
+    },
+    "territory": {
+      "corner": "bottom-right",
+      "mode": "free",
+      "region": "full",
+      "display": "auto",
+      "edge": 12,
+      "remember": true,
+      "left": 0,
+      "top": 0,
+      "width": 100,
+      "height": 100
+    },
+    "integration": {
+      "enabled": true,
+      "start": true,
+      "ongoing": true,
+      "waiting": true,
+      "completed": true,
+      "attention": true,
+      "animation": true,
+      "balloon": true,
+      "sound": true
+    },
+    "general": {
+      "startWithMac": false,
+      "startWithChatGPT": false,
+      "recordingHide": false
+    }
+  }
+}
